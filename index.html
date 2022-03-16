@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Demo Application</title>
+        <style>
+
+            html, body {
+                font-family: Verdana;
+                font-size: 16px;
+            }
+
+            .fgroup:not(:last-child) {
+                margin-bottom: 20px;
+            }
+
+            .idealLocationLineItem {
+                border: 1px solid black;
+                padding: 10px;
+                border-radius: 6px;
+            }
+
+            .idealLocationLineItem:not(:last-child) {
+                margin-bottom: 20px;
+            }
+
+            .hidden {
+                display: none;
+            }
+
+        </style>
+    </head>
+    <body onload="app.init();">
+        <div style="font-size: 2em;">Hello and welcome to the Holiday Chat Agent!</div>
+        <p>Please select from the following options to find your ideal location,
+          
+        </p>
+        <p>
+            Bear in mind that with each answer the search becomes more specific, meaning less or even no Holidays will be displayed as you add more filters.
+        </p>
+        <div id="firstLayer" class="fgroup">
+            <strong>
+                Hi there, please enter your name
+            </strong>
+            <input id="fname" type="text">
+            <button class="fbutton" data-next="catLayer">Next</button>
+        </div>
+        <div id="catLayer" class="fgroup hidden">
+            <strong>Which category would you like?</strong><br>
+            <select id="catID">
+                <option value="-1">Not required</option>
+                <option value="active">Active</option>
+                <option value="lazy">Lazy</option>
+            </select>
+            <button class="fbutton" data-next="starLayer">Next</button>
+        </div>
+        <div id="starLayer" class="fgroup hidden">
+            <strong>Which Star Rating would you like?</strong><br>
+            <select id="starRating">
+                <option value="-1">Not required</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <button class="fbutton" data-next="tempLayer">Next</button>
+        </div>
+        <div id="tempLayer" class="fgroup hidden">
+            <strong>What type of climate would you like?</strong><br>
+            <select id="temp">
+                <option value="-1">Not required</option>
+                <option value="mild">Mild</option>
+                <option value="hot">Hot</option>
+                <option value="cold">Cold</option>
+            </select>
+            <button class="fbutton" data-next="locationLayer">Next</button>
+        </div>
+        <div id="locationLayer" class="fgroup hidden">
+            <strong>Which type of location would you like?</strong><br>
+            <select id="location">
+                <option value="-1">Not required</option>
+                <option value="mountain">Mountain</option>
+                <option value="city">City</option>
+                <option value="sea">Sea</option>
+            </select>
+            <button class="fbutton" data-next="ppnLayer">Next</button>
+        </div>
+        <div id="ppnLayer" class="fgroup hidden">
+            <strong>What price per night are you after?</strong><br>
+            <select id="ppn">
+                <option value="-1">Not required</option>
+                <option value="25">25</option>
+                <option value="27">27</option>
+                <option value="28">28</option>
+                <option value="29">29</option>
+                <option value="42">42</option>
+                <option value="45">45</option>
+                <option value="50">50</option>
+                <option value="53">53</option>
+                <option value="54">54</option>
+                <option value="67">67</option>
+                <option value="71">71</option>
+                <option value="78">78</option>
+                <option value="89">89</option>
+                <option value="120">120</option>
+                <option value="250">250</option>
+                <option value="270">270</option>
+            </select>
+            <button class="fbutton" data-next="finalLayer">Next</button>
+        </div>
+        <div id="finalLayer" class="fgroup hidden">
+            <div id="idealLocation" style="font-size: 2em;">&nbsp;</div>
+        </div>
+        <template id="template_idealLocation">
+            <div style="display: flex; flex-direction: column; font-size: 16px;" class="idealLocationLineItem">
+                <div style="margin-bottom: 10px;">
+                    <strong>Hotel Name</strong><br>
+                    {{hotelName}}
+                </div>
+                <div>
+                    <strong>City, Country and Continent</strong><br>
+                    {{city}}, {{country}} on {{continent}}
+                </div>
+            </div>
+        </template>
+        <script src="app.js"></script>
+    </body>
+</html>
